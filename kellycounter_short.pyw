@@ -16,15 +16,17 @@ deviceColor = '#2C7873'
 cableColor = '#6FB98F'
 accessColor = '#78E3A6'
 
-window = tk.Tk()
+window = tk.Tk() #Starts a window for the program
 window.title('Kelly Counter')
 
 #Row Frames
+#Used to categorize the rows of products
 row_zero = tk.Frame()
 row_one = tk.Frame()
 row_two = tk.Frame()
 
 def logFunction():
+	"""Function Used to take the values displayed and export them neatly into a .txt file"""
 	oneReturn = rlClass.amount
 	twoReturn = two_rlClass.amount
 	threeReturn = three_rlClass.amount
@@ -48,9 +50,9 @@ def logFunction():
 	ipod = ipodClass.amount
 
 	sumPackage = onePackage + twoPackage + threePackage
-	sumReturn = oneReturn + twoReturn + threeReturn
+	sumReturn = oneReturn + twoReturn + threeReturn #Condenses the packing and return labels into one number
 	
-	file = open(fileName + '.txt','w+')
+	file = open(fileName + '.txt','w+') #Creates a new file for the shipping log
 	file.write('Shipping Log for ' + longDate)
 	if imac > 0:
 		file.write('\niMac: ' + str(imac))
@@ -89,7 +91,9 @@ def logFunction():
 	file.close()
 
 class Product:
+	"""A Class for each new section in the window"""
 	def __init__(self, label, color, master_row, column):
+		"""Initialize the variables and call the __makeBox() function"""
 		self.label = label
 		self.color = color
 		self.master_row = master_row
@@ -98,6 +102,7 @@ class Product:
 		self.__makeBox(self.label, self.color, self.master_row, self.column, self.amount)
 
 	def __makeBox(self, label, color, master_row, column, amount):
+		"""Creates each component of the box and places them inside"""
 		box = tk.Frame(master=self.master_row, borderwidth=1, padx=5, pady=5, bg=self.color)
 		box.rowconfigure(0, minsize=60, weight=1)
 		box.columnconfigure([0,1,2], minsize=60, weight=1)
@@ -105,6 +110,7 @@ class Product:
 		counter = tk.Label(master=box, text=self.amount, bg=self.color, fg="white")
 		entryZone = tk.Entry(master=box, width=5, justify="center")
 		def __plus():
+			"""Function for the button to add to the current value"""
 			entry = entryZone.get()
 			if len(entry) == 0:
 				self.amount+=1
@@ -117,6 +123,7 @@ class Product:
 			entryZone.delete(first=0, last=100)
 		plusButton = tk.Button(master=box, text="+", height=1, width=5, command=__plus, bg=self.color, fg="white")
 		def __minus():
+			"""Function for the button to subtract from the current value"""
 			entry = entryZone.get()
 			if len(entry) == 0:
 				self.amount-=1
@@ -136,6 +143,7 @@ class Product:
 		entryZone.grid(row=2, columnspan=3, sticky="nsew")
 		box.grid(row=0, column=self.column)		
 
+#Creating each Product
 rlClass = Product("RL", rlColor, row_zero, 0)
 two_rlClass = Product("2RL", rlColor, row_one, 0)
 three_rlClass = Product("3RL", rlColor, row_two, 0)
@@ -164,9 +172,11 @@ keyboardClass = Product("Keyboard", accessColor, row_zero, 6)
 headsetClass = Product("Headset", accessColor, row_one, 6)
 webcamClass = Product("Webcam", accessColor, row_two, 6)
 
+#Places each row into the main window
 row_zero.grid(row=0)
 row_one.grid(row=1)
 row_two.grid(row=2)
 window.mainloop()
 
+#Calls the function to export to a file after the window is closed
 logFunction()
