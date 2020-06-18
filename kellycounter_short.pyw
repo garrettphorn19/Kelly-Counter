@@ -27,67 +27,45 @@ row_two = tk.Frame()
 
 def logFunction():
 	"""Function Used to take the values displayed and export them neatly into a .txt file"""
-	oneReturn = rlClass.amount
-	twoReturn = two_rlClass.amount
-	threeReturn = three_rlClass.amount
-	onePackage = rlpClass.amount
-	twoPackage = two_rlpClass.amount
-	threePackage = three_rlpClass.amount
-	imac = iMacClass.amount
-	monitor = monitorClass.amount
-	usbc_hdmi = usbc_hdmiClass.amount
-	usbc_dvi = usbc_dviClass.amount
-	mdp_dvi = mdp_dviClass.amount
-	mdp_vga = mdp_vgaClass.amount
-	vga = vgaClass.amount
-	dvi = dviClass.amount
-	imac_power = imac_powerClass.amount
-	power = powerClass.amount
-	ethernet = ethernetClass.amount
-	keyboard = keyboardClass.amount
-	headset = headsetClass.amount
-	webcam = webcamClass.amount
-	ipod = ipodClass.amount
-
-	sumPackage = onePackage + twoPackage + threePackage
-	sumReturn = oneReturn + twoReturn + threeReturn #Condenses the packing and return labels into one number
+	sumPackage = rlpClass.amount + two_rlpClass.amount + three_rlpClass.amount
+	sumReturn = rlClass.amount + two_rlClass.amount + three_rlClass.amount #Condenses the packing and return labels into one number
 	
 	file = open(fileName + '.txt','w+') #Creates a new file for the shipping log
 	file.write('Shipping Log for ' + longDate)
 	if imac > 0:
-		file.write('\niMac: ' + str(imac))
+		file.write('\niMac: ' + str(iMacClass.amount))
 	if sumReturn > 0:
 		file.write('\nReturn Labels: ' + str(sumReturn))
 	if sumPackage > 0:
 		file.write('\nReturn Labels w/ Packaging: ' + str(sumPackage))
 	if monitor > 0:
-		file.write('\nMonitors: ' + str(monitor))
+		file.write('\nMonitors: ' + str(monitorClass.amount))
 	if ipod > 0:
-		file.write('\niPod: ' + str(ipod))
+		file.write('\niPod: ' + str(ipodClass.amount))
 	if usbc_hdmi > 0:
-		file.write('\nUSB-C to HDMI: ' + str(usbc_hdmi))
+		file.write('\nUSB-C to HDMI: ' + str(usbc_hdmiClass.amount))
 	if usbc_dvi > 0:
-		file.write('\nUSB-C to DVI: ' + str(usbc_dvi))
+		file.write('\nUSB-C to DVI: ' + str(usbc_dviClass.amount))
 	if mdp_dvi > 0:
-		file.write('\nMDP to DVI: ' + str(mdp_dvi))
+		file.write('\nMDP to DVI: ' + str(mdp_dviClass.amount))
 	if mdp_vga > 0:
-		file.write('\nMDP to VGA: ' + str(mdp_vga))
+		file.write('\nMDP to VGA: ' + str(mdp_vgaClass.amount))
 	if vga > 0:
-		file.write('\nVGA: ' + str(vga))
+		file.write('\nVGA: ' + str(vgaClass.amount))
 	if dvi > 0:
-		file.write('\nDVI: ' + str(dvi))
+		file.write('\nDVI: ' + str(dviClass.amount))
 	if imac_power > 0:
-		file.write('\niMac Power Cable: ' + str(imac_power))
+		file.write('\niMac Power Cable: ' + str(imac_powerClass.amount))
 	if power > 0:
-		file.write('\nPower Cable: ' + str(power))
+		file.write('\nPower Cable: ' + str(powerClass.amount))
 	if ethernet > 0:
-		file.write('\nCat5: ' + str(ethernet))
+		file.write('\nCat5: ' + str(ethernetClass.amount))
 	if keyboard > 0:
-		file.write('\nKeyboard/Mouse: ' + str(keyboard))
+		file.write('\nKeyboard/Mouse: ' + str(keyboardClass.amount))
 	if headset > 0:
-		file.write('\nHeadset: ' + str(headset))
+		file.write('\nHeadset: ' + str(headsetClass.amount))
 	if webcam > 0:
-		file.write('\nWebcam: ' + str(webcam))
+		file.write('\nWebcam: ' + str(webcamClass.amount))
 	file.close()
 
 class Product:
