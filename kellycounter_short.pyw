@@ -59,4 +59,4 @@ webcamClass = Product("Webcam", accessColor, row_two, 6)
 row_zero.grid(row=0)
 row_one.grid(row=1)
 row_two.grid(row=2)
-window.mainloop()
+window.mainloop()tytuytuytuyt
